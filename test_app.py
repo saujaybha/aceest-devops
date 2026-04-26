@@ -1,12 +1,19 @@
-import sqlite3
-from pathlib import Path
+from app import app
 
-def test_requirements_file_exists():
-    assert Path("requirements.txt").exists()
+def test_home():
+    client = app.test_client()
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.get_json()["status"] == "running"
 
-def test_app_file_exists():
-    assert Path("app.py").exists()
+def test_health():
+    client = app.test_client()
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.get_json()["status"] == "healthy"
 
-def test_database_connection():
-    conn = sqlite3.connect("test_test.db")
-    assert conn is not None
+def test_clients():
+    client = app.test_client()
+    response = client.get("/clients")
+    assert response.status_code == 200
+    assert response.is_json
