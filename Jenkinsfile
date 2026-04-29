@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t saujaybha/aceest-app:latest .' // [cite: 93, 113]
+                sh 'docker build -t saujaybha/aceest-app:latest .'
             }
         }
         stage('Test') {
             steps {
-                sh 'pytest' // [cite: 107, 114]
+                sh 'pytest'
             }
         }
         stage('SonarQube Analysis') {
             steps {
-                echo 'Running static code analysis...' // [cite: 108, 114]
+                echo 'Running static code analysis...'
             }
         }
     }
