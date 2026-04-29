@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2026-04-26T16:32:19Z"
+  labels:
+    app: aceest-deployment
+  name: aceest-deployment
+  namespace: default
+  resourceVersion: "643"
+  uid: d0350e6d-71ba-4cef-b6ad-548a565a6354
+spec:
+  clusterIP: 10.106.106.86
+  clusterIPs:
+  - 10.106.106.86
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32502
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: aceest-deployment
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
